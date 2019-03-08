@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CoreComponent } from './core.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -7,13 +8,22 @@ import { LoginComponent } from './login/login.component';
 import { StandingsComponent } from './standings/standings.component';
 import { MyPicksComponent } from './my-picks/my-picks.component';
 import { RouterModule } from '@angular/router';
+import { MakePicksComponent } from './make-picks/make-picks.component';
 
 @NgModule({
-  declarations: [CoreComponent, BannerComponent, LoginComponent, StandingsComponent, MyPicksComponent],
+  declarations: [
+    CoreComponent, 
+    BannerComponent, 
+    LoginComponent, 
+    StandingsComponent, 
+    MyPicksComponent, 
+    MakePicksComponent
+  ],
   imports: [
     CommonModule,
     AngularFireAuthModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ]
 })
 export class CoreModule { }

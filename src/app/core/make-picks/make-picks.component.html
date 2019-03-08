@@ -1,0 +1,60 @@
+<table class="table table-sm table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Character</th>
+      <th class="text-center">Lives or Dies</th>
+      <th class="text-center">Becomes Wight</th>
+      <th class="text-center">Episode Death</th>
+      <th class="text-center">Killed By</th>
+      <th class="text-center">Sure Thing?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let characterEntry of characterEntries">
+      <td>{{characterEntry.character.name}}</td>
+      <td>
+        <select class="custom-select custom-select-sm" [(ngModel)]="characterEntry.dies">
+          <option [ngValue]="false">Lives</option>
+          <option [ngValue]="true">Dies</option>
+        </select>
+      </td>
+      <td class="text-center">
+        <select *ngIf="characterEntry.dies" class="custom-select custom-select-sm"
+          [(ngModel)]="characterEntry.becomeWight">
+          <option [ngValue]="true">Becomes Wight</option>
+          <option [ngValue]="false">Not a Zombie</option>
+          <option [ngValue]="undefined">IDK Pass</option>
+        </select>
+        <span *ngIf="!characterEntry.dies">&mdash;</span>
+      </td>
+      <td class="text-center">
+        <select *ngIf="characterEntry.dies" class="custom-select custom-select-sm"
+          [(ngModel)]="characterEntry.episodeDeath">
+          <option [ngValue]="1">1</option>
+          <option [ngValue]="2">2</option>
+          <option [ngValue]="3">3</option>
+          <option [ngValue]="4">4</option>
+          <option [ngValue]="5">5</option>
+          <option [ngValue]="6">6</option>
+        </select>
+        <span *ngIf="!characterEntry.dies">&mdash;</span>
+      </td>
+      <td class="text-center">
+        <select *ngIf="characterEntry.dies" class="custom-select custom-select-sm"
+          [(ngModel)]="characterEntry.killedBy">
+          <option [ngValue]="undefined">&mdash;</option>
+          <option *ngFor="let character of characterList" [ngValue]="character.id">{{character.name}}</option>
+        </select>
+        <span *ngIf="!characterEntry.dies">&mdash;</span>
+      </td>
+      <td class="text-center">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="true" [(ngModel)]="characterEntry.sureThing">
+          <!-- <label class="form-check-label" for="defaultCheck1">
+            Sure thing?
+          </label> -->
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
