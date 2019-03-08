@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand navbar-light justify-content-between">
+  <a class="navbar-brand">Thrones Pick Em!</a>
+
+  <ul class="nav nav-pills">
+    <li class="nav-item secondary">
+      <a class="nav-link" routerLink="/standings" routerLinkActive="active">Standings</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/my-picks" routerLinkActive="active">My Picks</a>
+    </li>
+  </ul>
+
+  <div *ngIf="afAuth.user | async as user">
+    <a class="navbar-brand" href="#">
+      <img src="{{user.photoURL}}" width="30" height="30" alt="">
+    </a>
+    {{ user.displayName }}
+    <img>
+    <!-- <button (click)="logout()">Logout</button> -->
+  </div>
+</nav>
