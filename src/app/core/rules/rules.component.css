@@ -1,0 +1,19 @@
+.card-header{
+    background-color: rgba(255, 0, 0, 0.5);
+    border-radius: 0px;
+}
+
+.card-body, .card-header{
+    padding: .5rem;
+}
+
+h5{
+    margin-bottom: 0px;
+}
+
+.card{
+    border: solid 3px rgba(255, 0, 0, 0.5);
+}
+
+
+
