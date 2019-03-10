@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { EntryDataService } from './entry-data.service';
 
 @Component({
   selector: 'app-core',
@@ -8,9 +10,17 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class CoreComponent implements OnInit {
 
-  constructor(public afAuth: AngularFireAuth) { }
+  constructor(public afAuth: AngularFireAuth, private entryDataService: EntryDataService) { }
 
   ngOnInit() {
+    this.afAuth.user.subscribe(user => {
+      this.entryDataService.getUserEntry(user.uid);
+      this.entryDataService.userData.subscribe(userData => {
+        if(userData.length == 0){
+          this.entryDataService.addUserEntry();
+        }
+      });
+    })
   }
 
   logout(){

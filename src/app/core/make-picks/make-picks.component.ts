@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Character, CharacterList } from 'src/app/models/characters';
-import { CharacterEntry } from 'src/app/models/entryData';
+import { CharacterEntry, UserEntry } from 'src/app/models/entryData';
+import { EntryDataService } from '../entry-data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-make-picks',
@@ -11,11 +13,32 @@ export class MakePicksComponent implements OnInit {
 
   characterEntries: Array<CharacterEntry>;
   characterList: Array<Character>;
-  constructor() { 
+  userEntry: UserEntry;
+  docSubsciprtion: Subscription
+  constructor(private entryDataService: EntryDataService) {
     this.characterList = CharacterList;
+    this.docSubsciprtion = this.entryDataService.doc.subscribe(doc => {
+      if(doc && doc.picks){
+        this.characterEntries = JSON.parse(doc.picks);
+      }else{
+        this.initCharacterEntries();
+      }
+    });
+  }
+
+  ngOnInit() {
+
+  }
+
+  ngOnDestroy(){
+    this.docSubsciprtion.unsubscribe();
+    this.save();
+  }
+
+  initCharacterEntries(){
     this.characterEntries = new Array<CharacterEntry>();
     CharacterList.forEach(character => {
-      this.characterEntries.push( 
+      this.characterEntries.push(
         {
           character: character,
           dies: false,
@@ -27,7 +50,9 @@ export class MakePicksComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  save() {
+    console.log('save')
+    let stringifyEntry: string = JSON.stringify(this.characterEntries);
+    this.entryDataService.updateData(stringifyEntry);
   }
-
 }

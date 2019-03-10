@@ -13,6 +13,8 @@ import { RulesComponent } from './rules/rules.component';
 import { BonusQuestionsComponent } from './bonus-questions/bonus-questions.component';
 import { MyEntryComponent } from './my-entry/my-entry.component';
 import { MyEntryTabsComponent } from './my-entry/my-entry-tabs/my-entry-tabs.component';
+import { EntryDataService } from './entry-data.service';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,11 @@ import { MyEntryTabsComponent } from './my-entry/my-entry-tabs/my-entry-tabs.com
     CommonModule,
     AngularFireAuthModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    AngularFirestoreModule
+  ],
+  providers: [
+    EntryDataService
   ]
 })
 export class CoreModule { }

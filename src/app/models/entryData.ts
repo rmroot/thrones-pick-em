@@ -8,3 +8,8 @@ export interface CharacterEntry {
     killedBy?: number,
     sureThing?: boolean
 }
+
+export interface UserEntry {
+    userId: string,
+    characterEntries: Array<CharacterEntry>
+}
