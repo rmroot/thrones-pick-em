@@ -14,16 +14,18 @@ export class CoreComponent implements OnInit {
 
   ngOnInit() {
     this.afAuth.user.subscribe(user => {
-      this.entryDataService.getUserEntry(user.uid);
-      this.entryDataService.userData.subscribe(userData => {
-        if(userData.length == 0){
-          this.entryDataService.addUserEntry();
-        }
-      });
+      if (user) {
+        this.entryDataService.getUserEntry(user.uid);
+        this.entryDataService.userData.subscribe(userData => {
+          if (userData.length == 0) {
+            this.entryDataService.addUserEntry();
+          }
+        });
+      }
     })
   }
 
-  logout(){
+  logout() {
     this.afAuth.auth.signOut();
   }
 }

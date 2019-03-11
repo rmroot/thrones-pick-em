@@ -13,4 +13,7 @@ export class BannerComponent implements OnInit {
   ngOnInit() {
   }
 
+  logout(){
+    this.afAuth.auth.signOut();
+  }
 }
