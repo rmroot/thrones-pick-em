@@ -18,7 +18,7 @@ export class CoreComponent implements OnInit {
         this.entryDataService.getUserEntry(user.uid);
         this.entryDataService.userData.subscribe(userData => {
           if (userData.length == 0) {
-            this.entryDataService.addUserEntry();
+            this.entryDataService.addUserEntry(user.displayName);
           }
         });
       }

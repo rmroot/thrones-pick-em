@@ -1,0 +1,29 @@
+.card-header, .card-body{
+    padding: 6px;
+}
+
+.primary-character .btn-danger:not(:disabled):not(.disabled).active, .primary-character .card-header,
+.primary-character .custom-select{
+    background-color: rgba(255, 0, 0, 0.5);
+    border-color: rgba(255, 0, 0, 0.5);
+}
+
+
+.primary-character .btn-danger, .secondary-character .btn-danger{
+    background-color: rgba(231, 229, 229, 0.2);
+    border-color:  rgba(231, 229, 229, 0.2);
+}
+
+.secondary-character .btn-danger:not(:disabled):not(.disabled).active, .secondary-character .card-header,
+.secondary-character .custom-select{
+    background-color: #21618C;
+    border-color: #21618C;
+}
+
+.custom-select{
+    color: white;
+}
+
+.form-group{
+    margin-bottom: 0px;
+}

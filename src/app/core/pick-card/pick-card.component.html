@@ -1,0 +1,63 @@
+<div class="card bg-dark"
+  [ngClass]="{'primary-character': characterEntry.character.characterLevel == 1, 'secondary-character': characterEntry.character.characterLevel == 2 }">
+  <div class="card-header d-flex justify-content-between">
+    <div class="p-0">
+      {{characterEntry.character.name}}
+    </div>
+  </div>
+  <div class="card-body d-flex flex-column">
+    <!--lives/dies-->
+    <div class="p-0 text-center">
+      <span *ngIf="characterEntry.character.characterLevel == 1">(10pts)</span>
+      <span *ngIf="characterEntry.character.characterLevel == 2">(5pts)</span>
+    </div>
+    <div class="btn-group btn-group-sm">
+      <button type="button" class="btn btn-danger btn-sm toggle-btn" (click)="setLives(characterEntry)"
+        [ngClass]="{'active': !characterEntry.dies}">Lives</button>
+      <button type="button" class="btn btn-danger btn-sm toggle-btn" (click)="setDies(characterEntry)"
+        [ngClass]="{'active': characterEntry.dies}">Dies</button>
+    </div>
+    <!--wight/non-wight-->
+    <div class="p-1 text-center" [hidden]="!characterEntry.dies">
+      (+/- 4pts)
+    </div>
+    <div class="btn-group btn-group-sm" [hidden]="!characterEntry.dies">
+      <button type="button" class="btn btn-danger btn-sm toggle-btn" (click)="setWight(characterEntry)"
+        [ngClass]="{'active': characterEntry.becomesWight == true}">Wight</button>
+      <button type="button" class="btn btn-danger btn-sm toggle-btn" (click)="setNotWight(characterEntry)"
+        [ngClass]="{'active': characterEntry.becomesWight == false}">Not Wight</button>
+      <button type="button" class="btn btn-danger btn-sm toggle-btn" (click)="setPass(characterEntry)"
+        [ngClass]="{'active': characterEntry.becomesWight == undefined}">Pass</button>
+    </div>
+    <!--episode death-->
+    <div class="pt-2" [hidden]="!characterEntry.dies">
+      (8pts)
+    </div>
+    <div class="w-100" [hidden]="!characterEntry.dies">
+      <div class="form-group d-flex w-100">
+        <label class="w-100" for="{{'episodeDeath_'+index}}">Episode Death</label>
+        <select id="{{'episodeDeath_'+index}}" class="custom-select custom-select-sm" [(ngModel)]="characterEntry.episodeDeath">
+          <option [ngValue]="1">1</option>
+          <option [ngValue]="2">2</option>
+          <option [ngValue]="3">3</option>
+          <option [ngValue]="4">4</option>
+          <option [ngValue]="5">5</option>
+          <option [ngValue]="6">6</option>
+        </select>
+      </div>
+    </div>
+    <!--killed by-->
+    <div class="pt-2" [hidden]="!characterEntry.dies">
+      (15pts)
+    </div>
+    <div class="w-100" [hidden]="!characterEntry.dies">
+      <div class="form-group d-flex w-100">
+        <label class="w-100" for="{{'killedBy_'+index}}">Killed By</label>
+        <select id="{{'killedBy_'+index}}" class="custom-select custom-select-sm" [(ngModel)]="characterEntry.killedBy">
+          <option [ngValue]="undefined">&mdash;</option>
+          <option *ngFor="let character of characterList" [ngValue]="character.id">{{character.name}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>

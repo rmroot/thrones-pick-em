@@ -27,7 +27,7 @@ export class EntryDataService {
     this.userData = this.entryCollection.valueChanges();
   }
 
-  addUserEntry(){
+  addUserEntry(displayName: string){
     let characterEntries = new Array<CharacterEntry>();
     CharacterList.forEach(character => {
       characterEntries.push(
@@ -43,7 +43,8 @@ export class EntryDataService {
     let pickString: string = JSON.stringify(characterEntries);
     this.entryCollection.doc(this.userId).set(
       {
-        picks: pickString
+        picks: pickString,
+        displayName: displayName
       }
     )
   }

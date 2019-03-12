@@ -13,6 +13,12 @@
     background-color: rgba(255, 0, 0, 0.5);
 }
 
+.nav-pills.secondary .nav-link.active {
+    background-color: #21618C;
+}
+
+
+
 .nav-pills .nav-link:not(.active) {
     background-color: rgba(231, 229, 229, 0.2);
     color: white;

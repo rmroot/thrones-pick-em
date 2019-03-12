@@ -15,6 +15,8 @@ import { MyEntryComponent } from './my-entry/my-entry.component';
 import { MyEntryTabsComponent } from './my-entry/my-entry-tabs/my-entry-tabs.component';
 import { EntryDataService } from './entry-data.service';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { PickCardComponent } from './pick-card/pick-card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,14 +29,16 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     RulesComponent, 
     BonusQuestionsComponent, 
     MyEntryComponent, 
-    MyEntryTabsComponent
+    MyEntryTabsComponent, 
+    PickCardComponent
   ],
   imports: [
     CommonModule,
     AngularFireAuthModule,
     RouterModule,
     FormsModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    BrowserAnimationsModule
   ],
   providers: [
     EntryDataService

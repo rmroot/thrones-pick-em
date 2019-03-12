@@ -43,11 +43,13 @@ export class MakePicksComponent implements OnInit {
           character: character,
           dies: false,
           becomesWight: undefined,
-          episodeDeath: 1,
-          killedBy: undefined
+          episodeDeath: 6,
+          killedBy: undefined,
+          sureThing: false
         }
       )
     });
+    console.log(this.characterEntries);
   }
 
   save() {
