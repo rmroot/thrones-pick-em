@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CoreComponent } from './core/core.component';
 import { StandingsComponent } from './core/standings/standings.component';
-import { MyPicksComponent } from './core/my-picks/my-picks.component';
 import { MakePicksComponent } from './core/make-picks/make-picks.component';
 import { MyEntryComponent } from './core/my-entry/my-entry.component';
 import { RulesComponent } from './core/rules/rules.component';
 import { BonusQuestionsComponent } from './core/bonus-questions/bonus-questions.component';
+import { LogoutComponent } from './core/logout/logout.component';
 
 const routes: Routes = [
   {
@@ -20,10 +20,6 @@ const routes: Routes = [
 
       },
       {
-        path: 'my-picks',
-        component: MyPicksComponent
-      },
-      {
         path: 'standings',
         component: StandingsComponent
       },
@@ -34,7 +30,7 @@ const routes: Routes = [
           {
             path: '',
             pathMatch: 'full',
-            redirectTo: 'rules'
+            redirectTo: 'make-picks'
           },
           {
             path: 'rules',
@@ -49,6 +45,10 @@ const routes: Routes = [
             component: BonusQuestionsComponent
           }
         ]
+      },
+      {
+        path: 'logout',
+        component: LogoutComponent
       }
     ]
   }

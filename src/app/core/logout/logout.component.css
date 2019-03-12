@@ -1,0 +1,8 @@
+.card-header{
+    background-color: rgba(255, 0, 0, 0.5);
+    border-radius: 0px;
+}
+
+.card-body, .card-header{
+    padding: .5rem;
+}

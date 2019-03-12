@@ -1,18 +1,15 @@
-
 <nav class="navbar navbar-expand justify-content-between bg-dark">
-  <a class="navbar-brand">Thrones Pick Em!</a>
+  <a class="navbar-brand">Valar Morghulis</a>
   <div *ngIf="afAuth.user | async as user">
-    <a class="navbar-brand" href="#">
-      <img src="{{user.photoURL}}" width="30" height="30" alt="">
+    <a class="navbar-brand" routerLink="/logout" routerLinkActive="active">
+      <img src="{{user.photoURL}}" height="40" alt="">
     </a>
     {{ user.displayName }}
-    <img>
-    <button (click)="logout()">Logout</button>
   </div>
 </nav>
 
 
-<ul class="bg-dark nav nav-pills sticky-top">
+<ul class="bg-dark nav nav-pills sticky-top pt-2">
   <li class="nav-item pr-2">
     <a class="nav-link" routerLink="/my-entry" routerLinkActive="active">My Entry</a>
   </li>
