@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { UserEntry, CharacterEntry } from '../models/entryData';
+import { UserEntry, CharacterEntry, BonusQuestions } from '../models/entryData';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { CharacterList } from '../models/characters';
@@ -8,8 +8,8 @@ import { CharacterList } from '../models/characters';
 @Injectable()
 export class EntryDataService {
 
-  entryCollection: AngularFirestoreCollection<any>;
-  entries: Observable<any[]>;
+  entryCollection: AngularFirestoreCollection<UserEntry>;
+  entries: Observable<UserEntry[]>;
   userId: string;
   userData: Observable<any[]>;
   userDoc: AngularFirestoreDocument<any>;
@@ -41,18 +41,31 @@ export class EntryDataService {
       )
     });
     let pickString: string = JSON.stringify(characterEntries);
+    let bonusQuestions: BonusQuestions = {
+      sitsIronThrone: 1,
+      cerseiPregnant: false,
+      dannyBaby: false,
+      promisedPrince: 1
+    };
+    let bonusQuestionString: string = JSON.stringify(bonusQuestions);
     this.entryCollection.doc(this.userId).set(
       {
         picks: pickString,
-        displayName: displayName
+        displayName: displayName,
+        bonusQuestions: bonusQuestionString
       }
     )
   }
 
-
-  updateData(picks: string){
+  updatePicks(picks: string){
     this.userDoc.update({
       picks: picks
+    });
+  }
+
+  updateBonusQuestions(bonusQuestions: string){
+    this.userDoc.update({
+      bonusQuestions: bonusQuestions
     });
   }
 }

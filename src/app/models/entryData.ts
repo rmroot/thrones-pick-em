@@ -11,5 +11,13 @@ export interface CharacterEntry {
 
 export interface UserEntry {
     userId: string,
-    characterEntries: Array<CharacterEntry>
+    characterEntries: Array<CharacterEntry>,
+    bonusQuestions: BonusQuestions
+}
+
+export interface BonusQuestions {
+    sitsIronThrone: number,
+    cerseiPregnant: boolean,
+    dannyBaby: boolean,
+    promisedPrince: number
 }

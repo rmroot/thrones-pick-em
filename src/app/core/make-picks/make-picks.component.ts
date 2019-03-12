@@ -14,12 +14,12 @@ export class MakePicksComponent implements OnInit {
   characterEntries: Array<CharacterEntry>;
   characterList: Array<Character>;
   userEntry: UserEntry;
-  docSubsciprtion: Subscription
+  docSubscription: Subscription
   canSureThing: boolean;
   showSureThings: boolean = true;
   constructor(private entryDataService: EntryDataService) {
     this.characterList = CharacterList;
-    this.docSubsciprtion = this.entryDataService.doc.subscribe(doc => {
+    this.docSubscription = this.entryDataService.doc.subscribe(doc => {
       if(doc && doc.picks){
         this.characterEntries = JSON.parse(doc.picks);
       }else{
@@ -34,7 +34,7 @@ export class MakePicksComponent implements OnInit {
   }
 
   ngOnDestroy(){
-    this.docSubsciprtion.unsubscribe();
+    this.docSubscription.unsubscribe();
     this.save();
   }
 
@@ -57,7 +57,7 @@ export class MakePicksComponent implements OnInit {
   save() {
     console.log('save')
     let stringifyEntry: string = JSON.stringify(this.characterEntries);
-    this.entryDataService.updateData(stringifyEntry);
+    this.entryDataService.updatePicks(stringifyEntry);
   }
 
   checkSureThings(){

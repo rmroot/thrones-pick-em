@@ -1,10 +1,10 @@
 <nav class="navbar navbar-expand justify-content-between bg-dark">
   <a class="navbar-brand">Valar Morghulis</a>
   <div *ngIf="afAuth.user | async as user">
-    <a class="navbar-brand" routerLink="/logout" routerLinkActive="active">
+    <a class="navbar-brand mr-0" routerLink="/logout" routerLinkActive="active">
       <img src="{{user.photoURL}}" height="40" alt="">
     </a>
-    {{ user.displayName }}
+    <span class="d-none d-md-inline pl-2">{{user.displayName }}</span>
   </div>
 </nav>
 

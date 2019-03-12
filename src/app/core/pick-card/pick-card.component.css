@@ -27,3 +27,8 @@
 .form-group{
     margin-bottom: 0px;
 }
+
+
+select{
+    background-color: white;
+}
