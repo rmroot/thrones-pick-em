@@ -16,7 +16,7 @@ export class MakePicksComponent implements OnInit {
   userEntry: UserEntry;
   docSubscription: Subscription
   canSureThing: boolean;
-  showSureThings: boolean = true;
+  numSureThings: number = 0;
   constructor(private entryDataService: EntryDataService) {
     this.characterList = CharacterList;
     this.docSubscription = this.entryDataService.doc.subscribe(doc => {
@@ -55,17 +55,12 @@ export class MakePicksComponent implements OnInit {
   }
 
   save() {
-    console.log('save')
     let stringifyEntry: string = JSON.stringify(this.characterEntries);
     this.entryDataService.updatePicks(stringifyEntry);
   }
 
   checkSureThings(){
    let sureThings = this.characterEntries.filter(character => {return character.sureThing == true});
-   if(sureThings.length == 5){
-     this.showSureThings = false;
-   }else{
-     this.showSureThings = true;
-   }
+   this.numSureThings = sureThings.length;
   }
 }

@@ -13,7 +13,7 @@ export class PickCardComponent implements OnInit {
   @Input()
   index: number;
   @Input()
-  showSureThings: boolean;
+  numSureThings: number;
   @Output('emitCheckSureThings')
   emitCheckSureThings = new EventEmitter<boolean>();
 

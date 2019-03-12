@@ -1,5 +1,5 @@
 <div class="d-flex flex-wrap">
   <div class="col-md-4 col-lg-3 col-sm-12 pt-3" *ngFor="let characterEntry of characterEntries; let index = index;">
-    <app-pick-card [(characterEntry)]="characterEntry" [index]="index" (emitCheckSureThings)="checkSureThings()" [showSureThings]="showSureThings"></app-pick-card>
+    <app-pick-card [(characterEntry)]="characterEntry" [index]="index" (emitCheckSureThings)="checkSureThings()" [numSureThings]="numSureThings"></app-pick-card>
   </div>
 </div>

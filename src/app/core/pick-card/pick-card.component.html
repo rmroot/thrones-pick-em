@@ -61,12 +61,12 @@
         </select>
       </div>
     </div>
-    <div class="p-1 text-center" [hidden]="!showSureThings && !characterEntry.sureThing">
+    <div class="p-1 text-center" [hidden]="numSureThings == 5 && !characterEntry.sureThing">
       (x1.5)
     </div>
-    <div class="btn-group btn-group-sm" [hidden]="!showSureThings && !characterEntry.sureThing">
+    <div class="btn-group btn-group-sm" [hidden]="numSureThings == 5 && !characterEntry.sureThing">
       <button type="button" class="btn btn-danger btn-sm toggle-btn" (click)="setSureThing(characterEntry)"
-        [ngClass]="{'active': characterEntry.sureThing}">Sure Thing</button>
+        [ngClass]="{'active': characterEntry.sureThing}">Sure Thing ({{numSureThings}}/5)</button>
     </div>
   </div>
 </div>
