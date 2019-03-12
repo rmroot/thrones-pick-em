@@ -15,6 +15,8 @@ export class MakePicksComponent implements OnInit {
   characterList: Array<Character>;
   userEntry: UserEntry;
   docSubsciprtion: Subscription
+  canSureThing: boolean;
+  showSureThings: boolean = true;
   constructor(private entryDataService: EntryDataService) {
     this.characterList = CharacterList;
     this.docSubsciprtion = this.entryDataService.doc.subscribe(doc => {
@@ -23,6 +25,7 @@ export class MakePicksComponent implements OnInit {
       }else{
         this.initCharacterEntries();
       }
+      this.checkSureThings();
     });
   }
 
@@ -49,12 +52,20 @@ export class MakePicksComponent implements OnInit {
         }
       )
     });
-    console.log(this.characterEntries);
   }
 
   save() {
     console.log('save')
     let stringifyEntry: string = JSON.stringify(this.characterEntries);
     this.entryDataService.updateData(stringifyEntry);
+  }
+
+  checkSureThings(){
+   let sureThings = this.characterEntries.filter(character => {return character.sureThing == true});
+   if(sureThings.length == 5){
+     this.showSureThings = false;
+   }else{
+     this.showSureThings = true;
+   }
   }
 }

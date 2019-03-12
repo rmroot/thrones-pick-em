@@ -6,6 +6,7 @@
     </div>
   </div>
   <div class="card-body d-flex flex-column">
+
     <!--lives/dies-->
     <div class="p-0 text-center">
       <span *ngIf="characterEntry.character.characterLevel == 1">(10pts)</span>
@@ -36,7 +37,8 @@
     <div class="w-100" [hidden]="!characterEntry.dies">
       <div class="form-group d-flex w-100">
         <label class="w-100" for="{{'episodeDeath_'+index}}">Episode Death</label>
-        <select id="{{'episodeDeath_'+index}}" class="custom-select custom-select-sm" [(ngModel)]="characterEntry.episodeDeath">
+        <select id="{{'episodeDeath_'+index}}" class="w-50 custom-select custom-select-sm"
+          [(ngModel)]="characterEntry.episodeDeath">
           <option [ngValue]="1">1</option>
           <option [ngValue]="2">2</option>
           <option [ngValue]="3">3</option>
@@ -58,6 +60,13 @@
           <option *ngFor="let character of characterList" [ngValue]="character.id">{{character.name}}</option>
         </select>
       </div>
+    </div>
+    <div class="p-1 text-center" [hidden]="!showSureThings && !characterEntry.sureThing">
+      (x1.5)
+    </div>
+    <div class="btn-group btn-group-sm" [hidden]="!showSureThings && !characterEntry.sureThing">
+      <button type="button" class="btn btn-danger btn-sm toggle-btn" (click)="setSureThing(characterEntry)"
+        [ngClass]="{'active': characterEntry.sureThing}">Sure Thing</button>
     </div>
   </div>
 </div>

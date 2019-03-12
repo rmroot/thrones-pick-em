@@ -7,13 +7,18 @@ export interface Character {
 
 export const CharacterList: Array<Character> = [
     {
-        name: 'Jon Snow',
+        name: 'Daenerys Targaryen',
         id: 0,
         characterLevel: 1
     },
     {
-        name: 'Sansa Stark',
+        name: 'Jon Snow',
         id: 1,
+        characterLevel: 1
+    },
+    {
+        name: 'Sansa Stark',
+        id: 2,
         characterLevel: 1
 
     },
@@ -43,113 +48,108 @@ export const CharacterList: Array<Character> = [
         characterLevel: 1
     },
     {
-        name: 'Daenerys Targaryen',
-        id: 8,
-        characterLevel: 1
-    },
-    {
         name: 'Melisandre',
-        id: 9,
+        id: 8,
         characterLevel: 2
     },
     {
         name: 'Jorah Mormont',
-        id: 10,
+        id: 9,
         characterLevel: 2
     },
     {
         name: 'Samwell Tarley',
-        id: 11,
+        id: 10,
         characterLevel: 2
     },
     {
         name: 'Varys',
-        id: 12,
+        id: 11,
         characterLevel: 2
     },
     {
         name: 'Theon Greyjoy',
-        id: 13,
+        id: 12,
         characterLevel: 2
     },
     {
         name: 'Yara Greyjoy',
-        id: 14,
+        id: 13,
         characterLevel: 2
     },
     {
         name: 'Euron Greyjoy',
-        id: 15,
+        id: 14,
         characterLevel: 2
     },
     {
         name: 'The Hound',
-        id: 16,
+        id: 15,
         characterLevel: 2
     },
     {
         name: 'The Mountain',
-        id: 17,
+        id: 16,
         characterLevel: 2
     },
     {
         name: 'Gilly',
-        id: 18,
+        id: 17,
         characterLevel: 2
     },
     {
         name: 'Brienne of Tarth',
-        id: 19,
+        id: 18,
         characterLevel: 2
     },
     {
         name: 'Davos Seaworth',
-        id: 20,
+        id: 19,
         characterLevel: 2
     },
     {
         name: 'Bronn',
-        id: 21,
+        id: 20,
         characterLevel: 2
     },
     {
         name: 'Podrick Payne',
-        id: 22,
+        id: 21,
         characterLevel: 2
     },
     {
         name: 'Tormund Giantsbane',
-        id: 23,
+        id: 22,
         characterLevel: 2
     },
     {
         name: 'Grey Worm',
-        id: 24,
+        id: 23,
         characterLevel: 2
     },
     {
         name: 'Gendry',
-        id: 25,
+        id: 24,
         characterLevel: 2
     },
     {
         name: 'Ghost',
-        id: 26,
+        id: 25,
         characterLevel: 2
     },
     {
         name: 'Nymeria',
-        id: 27,
+        id: 26,
         characterLevel: 2
     },
     {
         name: 'Raegal',
-        id: 28,
+        id: 27,
         characterLevel: 2
     },
     {
         name: 'Drogon',
-        id: 29,
+        id: 28,
         characterLevel: 2
     }
 ]

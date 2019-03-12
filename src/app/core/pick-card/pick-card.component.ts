@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CharacterEntry } from 'src/app/models/entryData';
 import { Character, CharacterList } from 'src/app/models/characters';
 
@@ -12,12 +12,20 @@ export class PickCardComponent implements OnInit {
   characterEntry: CharacterEntry;
   @Input()
   index: number;
+  @Input()
+  showSureThings: boolean;
+  @Output('emitCheckSureThings')
+  emitCheckSureThings = new EventEmitter<boolean>();
 
   characterList: Array<Character>;
   constructor() { }
 
   ngOnInit() {
     this.characterList = CharacterList;
+  }
+
+  checkSureThings(){
+    this.emitCheckSureThings.emit(true);
   }
 
   setLives(characterEntry: CharacterEntry){
@@ -41,8 +49,7 @@ export class PickCardComponent implements OnInit {
   }
 
   setSureThing(characterEntry: CharacterEntry){
-    console.log(characterEntry.character.name);
-    console.log(characterEntry.sureThing);
     characterEntry.sureThing = !characterEntry.sureThing;
+    this.checkSureThings();
   }
 }
