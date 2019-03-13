@@ -28,7 +28,7 @@
       <button type="button" class="btn btn-danger btn-sm toggle-btn" (click)="setNotWight(characterEntry)"
         [ngClass]="{'active': characterEntry.becomesWight == false}">Not Wight</button>
       <button type="button" class="btn btn-danger btn-sm toggle-btn" (click)="setPass(characterEntry)"
-        [ngClass]="{'active': characterEntry.becomesWight == undefined}">Pass</button>
+        [ngClass]="{'active': characterEntry.becomesWight == undefined}">IDK Pass</button>
     </div>
     <!--episode death-->
     <div class="pt-2" [hidden]="!characterEntry.dies">
@@ -38,7 +38,7 @@
       <div class="form-group d-flex w-100">
         <label class="w-100" for="{{'episodeDeath_'+index}}">Episode Death</label>
         <select id="{{'episodeDeath_'+index}}" class="w-50 custom-select custom-select-sm"
-          [(ngModel)]="characterEntry.episodeDeath">
+          [(ngModel)]="characterEntry.episodeDeath" (change)="save()">
           <option [ngValue]="1">1</option>
           <option [ngValue]="2">2</option>
           <option [ngValue]="3">3</option>
@@ -55,9 +55,12 @@
     <div class="w-100" [hidden]="!characterEntry.dies">
       <div class="form-group d-flex w-100">
         <label class="w-100" for="{{'killedBy_'+index}}">Killed By</label>
-        <select id="{{'killedBy_'+index}}" class="custom-select custom-select-sm" [(ngModel)]="characterEntry.killedBy">
+        <select id="{{'killedBy_'+index}}" class="custom-select custom-select-sm" [(ngModel)]="characterEntry.killedBy"
+          (change)="save()">
           <option [ngValue]="undefined">&mdash;</option>
           <option *ngFor="let character of characterList" [ngValue]="character.id">{{character.name}}</option>
+          <option [ngValue]="28">Night King</option>
+          <option [ngValue]="29">Viserion Zombie Dragon</option>
         </select>
       </div>
     </div>

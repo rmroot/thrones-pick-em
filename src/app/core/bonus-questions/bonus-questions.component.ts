@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EntryDataService } from '../entry-data.service';
-import { Subscription } from 'rxjs';
 import { BonusQuestions } from 'src/app/models/entryData';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-bonus-questions',
@@ -10,29 +10,25 @@ import { BonusQuestions } from 'src/app/models/entryData';
 })
 export class BonusQuestionsComponent implements OnInit {
 
-  docSubscription: Subscription;
   bonusQuestions: BonusQuestions;
+  bonusQuestionsSubscription: Subscription;
   constructor(private entryDataService: EntryDataService) { }
 
   ngOnInit() {
-    this.docSubscription = this.entryDataService.doc.subscribe(doc => {
-      if (doc && doc.bonusQuestions) {
-        this.bonusQuestions = JSON.parse(doc.bonusQuestions);
-      }else{
-        this.bonusQuestions = {
-          sitsIronThrone: 1,
-          cerseiPregnant: false,
-          dannyBaby: false,
-          promisedPrince: 1
-        }
-      }
-    });
+    this.bonusQuestionsSubscription = this.entryDataService.bonusQuestions.subscribe(val => {
+      this.bonusQuestions = val;
+    })
   }
 
   ngOnDestroy() {
-    this.entryDataService.updateBonusQuestions(JSON.stringify(this.bonusQuestions));
-    this.docSubscription.unsubscribe();
+    this.bonusQuestionsSubscription.unsubscribe();
+    this.save();
   }
+
+  save(){
+    this.entryDataService.updateBonusQuestions(JSON.stringify(this.bonusQuestions));
+  }
+
   setThrone(num: number) {
     this.bonusQuestions.sitsIronThrone = num;
   }

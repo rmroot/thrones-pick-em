@@ -16,6 +16,8 @@ export class PickCardComponent implements OnInit {
   numSureThings: number;
   @Output('emitCheckSureThings')
   emitCheckSureThings = new EventEmitter<boolean>();
+  @Output('emitSave')
+  emitSave = new EventEmitter<boolean>();
 
   characterList: Array<Character>;
   constructor() { }
@@ -24,32 +26,42 @@ export class PickCardComponent implements OnInit {
     this.characterList = CharacterList;
   }
 
+  save(){
+    this.emitSave.emit(true);
+  }
+  
   checkSureThings(){
     this.emitCheckSureThings.emit(true);
   }
 
   setLives(characterEntry: CharacterEntry){
     characterEntry.dies = false;
+    this.save();
   }
 
   setDies(characterEntry: CharacterEntry){
     characterEntry.dies = true;
+    this.save();
   }
 
   setWight(characterEntry: CharacterEntry){
     characterEntry.becomesWight = true;
+    this.save();
   }
   
   setNotWight(characterEntry: CharacterEntry){
     characterEntry.becomesWight = false;
+    this.save();
   }
   
   setPass(characterEntry: CharacterEntry){
     characterEntry.becomesWight = undefined;
+    this.save();
   }
 
   setSureThing(characterEntry: CharacterEntry){
     characterEntry.sureThing = !characterEntry.sureThing;
     this.checkSureThings();
+    this.save();
   }
 }

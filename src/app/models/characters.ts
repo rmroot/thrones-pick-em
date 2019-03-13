@@ -33,17 +33,17 @@ export const CharacterList: Array<Character> = [
         characterLevel: 1
     },
     {
-        name: 'Cersei Lanister',
+        name: 'Cersei Lannister',
         id: 5,
         characterLevel: 1
     },
     {
-        name: 'Jaime Lanister',
+        name: 'Jaime Lannister',
         id: 6,
         characterLevel: 1
     },
     {
-        name: 'Tyrion Lanister',
+        name: 'Tyrion Lannister',
         id: 7,
         characterLevel: 1
     },

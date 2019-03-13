@@ -7,7 +7,7 @@
     padding: .5rem;
 }
 
-h5, h3{
+h6, h4{
     margin-bottom: 0px;
 }
 
@@ -17,6 +17,6 @@ h5, h3{
 
 
 
-h4{
+h5{
     border-bottom: solid rgba(255, 0, 0, 0.5);
 }

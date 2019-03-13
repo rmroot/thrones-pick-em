@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Character, CharacterList } from 'src/app/models/characters';
-import { CharacterEntry, UserEntry } from 'src/app/models/entryData';
+import { CharacterEntry } from 'src/app/models/entryData';
 import { EntryDataService } from '../entry-data.service';
 import { Subscription } from 'rxjs';
 
@@ -13,45 +13,27 @@ export class MakePicksComponent implements OnInit {
 
   characterEntries: Array<CharacterEntry>;
   characterList: Array<Character>;
-  userEntry: UserEntry;
-  docSubscription: Subscription
-  canSureThing: boolean;
   numSureThings: number = 0;
-  constructor(private entryDataService: EntryDataService) {
+  characterEntrySub: Subscription;
+  counter: any;
+
+  constructor(public entryDataService: EntryDataService) {
     this.characterList = CharacterList;
-    this.docSubscription = this.entryDataService.doc.subscribe(doc => {
-      if(doc && doc.picks){
-        this.characterEntries = JSON.parse(doc.picks);
-      }else{
-        this.initCharacterEntries();
-      }
+  }
+
+  ngOnInit() {
+    this.characterEntrySub = this.entryDataService.characterEntries.subscribe(val => {
+      this.characterEntries = val;
       this.checkSureThings();
     });
   }
 
-  ngOnInit() {
-
-  }
-
-  ngOnDestroy(){
-    this.docSubscription.unsubscribe();
+  ngOnDestroy() {
+    this.characterEntrySub.unsubscribe();
     this.save();
-  }
-
-  initCharacterEntries(){
-    this.characterEntries = new Array<CharacterEntry>();
-    CharacterList.forEach(character => {
-      this.characterEntries.push(
-        {
-          character: character,
-          dies: false,
-          becomesWight: undefined,
-          episodeDeath: 6,
-          killedBy: undefined,
-          sureThing: false
-        }
-      )
-    });
+    if (this.counter) {
+      clearTimeout(this.counter);
+    }
   }
 
   save() {
@@ -59,8 +41,17 @@ export class MakePicksComponent implements OnInit {
     this.entryDataService.updatePicks(stringifyEntry);
   }
 
-  checkSureThings(){
-   let sureThings = this.characterEntries.filter(character => {return character.sureThing == true});
-   this.numSureThings = sureThings.length;
+  checkSureThings() {
+    let sureThings = this.characterEntries.filter(character => { return character.sureThing == true });
+    this.numSureThings = sureThings.length;
+  }
+
+  startSavePolling() {
+    if (this.counter) {
+      clearTimeout(this.counter);
+    }
+    this.counter = setTimeout(() => {
+      this.save();
+    }, 10000)
   }
 }
