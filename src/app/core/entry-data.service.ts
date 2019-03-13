@@ -12,10 +12,11 @@ export class EntryDataService {
   entryCollection: AngularFirestoreCollection<UserEntry>;
   userDoc: AngularFirestoreDocument<any>;
   doc: Observable<any>;
-
+  entries: Observable<any>;
   characterEntries: BehaviorSubject<Array<CharacterEntry>>;
   bonusQuestions: BehaviorSubject<BonusQuestions>;
   user: User;
+  allEntries: BehaviorSubject<Array<UserEntry>>;
   constructor(private afs: AngularFirestore, public afAuth: AngularFireAuth) {
     this.characterEntries = new BehaviorSubject<Array<CharacterEntry>>([]);
     this.bonusQuestions = new BehaviorSubject<BonusQuestions>({
@@ -24,13 +25,17 @@ export class EntryDataService {
       dannyBaby: false,
       promisedPrince: 1
     });
+    this.allEntries = new BehaviorSubject<Array<UserEntry>>([]);
 
     afAuth.user.subscribe(user => {
       this.user = user;
-      this.entryCollection = this.afs.collection<any>('users');
-      this.userDoc = this.entryCollection.doc(this.user.uid);
-      this.doc = this.userDoc.valueChanges();
-      this.subscribeData();
+      if (this.user) {
+        this.entryCollection = this.afs.collection<any>('users');
+        this.userDoc = this.entryCollection.doc(this.user.uid);
+        this.entries = this.entryCollection.valueChanges();
+        this.doc = this.userDoc.valueChanges();
+        this.subscribeData();
+      }
     })
   }
 
@@ -59,20 +64,23 @@ export class EntryDataService {
       {
         picks: pickString,
         displayName: this.user.displayName,
-        bonusQuestions: bonusQuestionString
+        bonusQuestions: bonusQuestionString,
+        userId: this.user.uid
       }
     )
   }
 
   updatePicks(picks: string) {
     this.userDoc.update({
-      picks: picks
+      picks: picks,
+      userId: this.user.uid
     });
   }
 
   updateBonusQuestions(bonusQuestions: string) {
     this.userDoc.update({
-      bonusQuestions: bonusQuestions
+      bonusQuestions: bonusQuestions,
+      userId: this.user.uid
     });
   }
 
@@ -85,9 +93,14 @@ export class EntryDataService {
         if (val.bonusQuestions) {
           this.bonusQuestions.next(JSON.parse(val.bonusQuestions));
         }
-      }else{
+      } else {
         this.addUserEntry();
       }
+    })
+
+    this.entries.subscribe(entries => {
+      console.log(entries);
+      this.allEntries.next(entries);
     })
   }
 }

@@ -17,6 +17,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { PickCardComponent } from './pick-card/pick-card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LogoutComponent } from './logout/logout.component';
+import { CalculateScoreService } from './calculate-score.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { LogoutComponent } from './logout/logout.component';
     BrowserAnimationsModule
   ],
   providers: [
-    EntryDataService
+    EntryDataService,
+    CalculateScoreService
   ]
 })
 export class CoreModule { }

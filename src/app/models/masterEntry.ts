@@ -1,6 +1,7 @@
 import { UserEntry } from './entryData';
 
 export const masterEntry: UserEntry = {
+    displayName: '',
     userId: '',
     bonusQuestions: {
         sitsIronThrone: 5,

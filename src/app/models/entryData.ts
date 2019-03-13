@@ -12,7 +12,8 @@ export interface CharacterEntry {
 export interface UserEntry {
     userId: string,
     characterEntries: Array<CharacterEntry>,
-    bonusQuestions: BonusQuestions
+    bonusQuestions: BonusQuestions,
+    displayName: string
 }
 
 export interface BonusQuestions {
