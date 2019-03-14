@@ -7,6 +7,7 @@ import { MyEntryComponent } from './core/my-entry/my-entry.component';
 import { RulesComponent } from './core/rules/rules.component';
 import { BonusQuestionsComponent } from './core/bonus-questions/bonus-questions.component';
 import { LogoutComponent } from './core/logout/logout.component';
+import { ScoringComponent } from './core/scoring/scoring.component';
 
 const routes: Routes = [
   {
@@ -20,8 +21,19 @@ const routes: Routes = [
 
       },
       {
-        path: 'standings',
-        component: StandingsComponent
+        path: 'scoring',
+        component: ScoringComponent,
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            redirectTo: 'standings'
+          },
+          {
+            path: 'standings',
+            component: StandingsComponent
+          },
+        ]
       },
       {
         path: 'my-entry',

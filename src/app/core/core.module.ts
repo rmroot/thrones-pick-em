@@ -18,6 +18,9 @@ import { PickCardComponent } from './pick-card/pick-card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LogoutComponent } from './logout/logout.component';
 import { CalculateScoreService } from './calculate-score.service';
+import { ScoringComponent } from './scoring/scoring.component';
+import { ScoringTabsComponent } from './scoring-tabs/scoring-tabs.component';
+import { SortByPipe } from './sort-by.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,7 @@ import { CalculateScoreService } from './calculate-score.service';
     BonusQuestionsComponent, 
     MyEntryComponent, 
     MyEntryTabsComponent, 
-    PickCardComponent, LogoutComponent
+    PickCardComponent, LogoutComponent, ScoringComponent, ScoringTabsComponent, SortByPipe
   ],
   imports: [
     CommonModule,

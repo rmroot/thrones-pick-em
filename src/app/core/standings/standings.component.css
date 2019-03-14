@@ -2,12 +2,24 @@
     padding: 6px;
 }
 
-.card-header:nth-child(2n){
+.card:nth-child(odd) .card-header{
     background-color: rgba(255, 0, 0, 0.5);
     border-color: rgba(255, 0, 0, 0.5);
 }
 
-.card-header{
+/* .card:nth-child(odd){
+    border: solid 6px  rgba(255, 0, 0, 0.5);
+} */
+
+.card:nth-child(even) .card-header{
     background-color: #21618C;
     border-color: #21618C;
+}
+
+/* .card:nth-child(even){
+    border: solid 6px #21618C;
+} */
+
+.card-body{
+    background-color: #E5E8E8;
 }

@@ -2,7 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { EntryDataService } from '../entry-data.service';
 import { CalculateScoreService } from '../calculate-score.service';
 import { Subscription } from 'rxjs';
-import { UserEntry } from 'src/app/models/entryData';
+import { UserEntry, CharacterEntry } from 'src/app/models/entryData';
+
+export interface Standing {
+  score: number, 
+  entry: UserEntry,
+  sureThings: Array<CharacterEntry>
+}
+
 
 @Component({
   selector: 'app-standings',
@@ -12,17 +19,17 @@ import { UserEntry } from 'src/app/models/entryData';
 export class StandingsComponent implements OnInit {
 
 
-  standings: Array<{ score: number, entry: UserEntry }>;
+  standings: Array<Standing>;
   allEntriesSubscription: Subscription;
   constructor(private entryDataService: EntryDataService, private calculateScoreService: CalculateScoreService) { }
 
   ngOnInit() {
-    this.standings = new Array();
     this.allEntriesSubscription = this.entryDataService.allEntries.subscribe(entries => {
+      this.standings = new Array();
       if (entries) {
         this.calculateScores(entries);
       }
-    })
+    });
   }
 
   ngOnDestroy() {
@@ -35,10 +42,15 @@ export class StandingsComponent implements OnInit {
       this.standings.push(
         {
           entry: entry,
-          score: score
+          score: score,
+          sureThings: this.getSureThings(entry.characterEntries)
         }
       );
     });
   }
 
+  getSureThings(characterEntries: Array<CharacterEntry>): Array<CharacterEntry> {
+    let sureThings: Array<CharacterEntry> = characterEntries.filter(entry => { return entry.sureThing == true });
+    return sureThings;
+  }
 }

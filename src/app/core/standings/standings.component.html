@@ -1,9 +1,9 @@
 <div class="col-12 pt-3">
   <div class="d-flex flex-column">
-    <div class="card bg-dark" *ngFor="let standings of standings; let index = index;">
+    <div class="card bg-dark mb-2" *ngFor="let standing of standings | sortBy:'score':'desc'; let index = index;">
       <div class="card-header d-flex justify-content-between">
         <div>
-          {{index+1}}. {{standings.entry.displayName}} ({{standings.score}} pts)
+          {{index+1}}. {{standing.entry.displayName}} ({{standing.score}} pts)
         </div>
       </div>
     </div>
