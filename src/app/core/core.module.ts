@@ -21,6 +21,12 @@ import { CalculateScoreService } from './calculate-score.service';
 import { ScoringComponent } from './scoring/scoring.component';
 import { ScoringTabsComponent } from './scoring-tabs/scoring-tabs.component';
 import { SortByPipe } from './sort-by.pipe';
+import { MyScoreComponent } from './my-score/my-score.component';
+import { GroupsComponent } from './groups/groups.component';
+import { HelperService } from './helper.service';
+import { BonusQuestionsTableComponent } from './bonus-questions-table/bonus-questions-table.component';
+import { CharacterEntryTableComponent } from './character-entry-table/character-entry-table.component';
+import { PickCardResultsComponent } from './pick-card-results/pick-card-results.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +39,7 @@ import { SortByPipe } from './sort-by.pipe';
     BonusQuestionsComponent, 
     MyEntryComponent, 
     MyEntryTabsComponent, 
-    PickCardComponent, LogoutComponent, ScoringComponent, ScoringTabsComponent, SortByPipe
+    PickCardComponent, LogoutComponent, ScoringComponent, ScoringTabsComponent, SortByPipe, MyScoreComponent, GroupsComponent, BonusQuestionsTableComponent, CharacterEntryTableComponent, PickCardResultsComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +51,8 @@ import { SortByPipe } from './sort-by.pipe';
   ],
   providers: [
     EntryDataService,
-    CalculateScoreService
+    CalculateScoreService,
+    HelperService
   ]
 })
 export class CoreModule { }

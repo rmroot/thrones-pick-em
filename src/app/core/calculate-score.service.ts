@@ -49,16 +49,16 @@ export class CalculateScoreService {
 
   calculateBonusQuestions(bonusQuestions: BonusQuestions): number {
     let score: number = 0;
-    if(bonusQuestions.cerseiPregnant == masterEntry.bonusQuestions.cerseiPregnant){
+    if(masterEntry.bonusQuestions.cerseiPregnant == bonusQuestions.cerseiPregnant){
       score += 4;
     }
-    if(bonusQuestions.dannyBaby == bonusQuestions.dannyBaby){
+    if(masterEntry.bonusQuestions.dannyBaby == bonusQuestions.dannyBaby){
       score += 8;
     }
-    if(bonusQuestions.promisedPrince == bonusQuestions.promisedPrince){
+    if(masterEntry.bonusQuestions.promisedPrince == bonusQuestions.promisedPrince){
       score += 10;
     }
-    if(bonusQuestions.sitsIronThrone == bonusQuestions.sitsIronThrone){
+    if(masterEntry.bonusQuestions.sitsIronThrone == bonusQuestions.sitsIronThrone){
       score += 15;
     }
     return score;

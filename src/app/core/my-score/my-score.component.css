@@ -1,0 +1,17 @@
+.card-header{
+    padding: 6px;
+}
+
+.primary .card-header{
+    background-color: rgba(255, 0, 0, 0.5);
+    border-color: rgba(255, 0, 0, 0.5);
+}
+
+.secondary .card-header{
+    background-color: #21618C;
+    border-color: #21618C;
+}
+
+.card-body{
+    background-color: #E5E8E8;
+}

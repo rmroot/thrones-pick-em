@@ -1,0 +1,6 @@
+<div class="d-flex flex-wrap">
+  <div class="col-md-6 col-sm-12 pt-3" *ngFor="let characterEntry of characterEntries; let index = index;">
+    <app-pick-card-results [characterEntry]="characterEntry" [masterEntry]="masterEntry.characterEntries[index]">
+    </app-pick-card-results>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<table class="table table-sm table-dark table-striped mb-0 table-hover">
+    <thead>
+      <tr>
+        <th>Question</th>
+        <th>Prediction</th>
+        <th>Current</th>
+        <th>Points Gained</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1. Who ends up sitting the Iron Throne?</td>
+        <td>{{getSitsIronThrone(bonusQuestions.sitsIronThrone)}}</td>
+        <td>{{getSitsIronThrone(masterEntry.bonusQuestions.sitsIronThrone)}}</td>
+        <td>
+          <span *ngIf="bonusQuestions.sitsIronThrone == masterEntry.bonusQuestions.sitsIronThrone">15pts</span>
+          <span *ngIf="bonusQuestions.sitsIronThrone != masterEntry.bonusQuestions.sitsIronThrone">0pts</span>
+        </td>
+      </tr>
+      <tr>
+        <td>2. Is Cersei pregnant?</td>
+        <td>
+          <span *ngIf="bonusQuestions.cerseiPregnant == true">Yes</span>
+          <span *ngIf="bonusQuestions.cerseiPregnant == false">No</span>
+        </td>
+        <td>
+          <span *ngIf="masterEntry.bonusQuestions.cerseiPregnant == true">Yes</span>
+          <span *ngIf="masterEntry.bonusQuestions.cerseiPregnant == false">No</span>
+        </td>
+        <td>
+          <span *ngIf="bonusQuestions.cerseiPregnant == masterEntry.bonusQuestions.cerseiPregnant">4pts</span>
+          <span *ngIf="bonusQuestions.cerseiPregnant != masterEntry.bonusQuestions.cerseiPregnant">0pts</span>
+        </td>
+      </tr>
+      <tr>
+        <td>3. Do Jon and Daenerys have a child?</td>
+        <td>
+          <span *ngIf="bonusQuestions.dannyBaby == true">Yes</span>
+          <span *ngIf="bonusQuestions.dannyBaby == false">No</span>
+        </td>
+        <td>
+          <span *ngIf="masterEntry.bonusQuestions.dannyBaby == true">Yes</span>
+          <span *ngIf="masterEntry.bonusQuestions.dannyBaby == false">No</span>
+        </td>
+        <td>
+          <span *ngIf="bonusQuestions.dannyBaby == masterEntry.bonusQuestions.dannyBaby">8pts</span>
+          <span *ngIf="bonusQuestions.dannyBaby != masterEntry.bonusQuestions.dannyBaby">0pts</span>
+        </td>
+      </tr>
+      <tr>
+        <td>4. Who is the Prince That Is Promised?</td>
+        <td>{{getPromisedPrince(bonusQuestions.promisedPrince)}}</td>
+        <td>{{getPromisedPrince(masterEntry.bonusQuestions.promisedPrince)}}</td>
+        <td>
+          <span *ngIf="bonusQuestions.promisedPrince == masterEntry.bonusQuestions.promisedPrince">10pts</span>
+          <span *ngIf="bonusQuestions.promisedPrince != masterEntry.bonusQuestions.promisedPrince">0pts</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>

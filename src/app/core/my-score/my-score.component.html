@@ -1,0 +1,32 @@
+<div class="col-12 pt-3">
+  <div class="card primary bg-dark">
+    <div class="card-header d-flex justify-content-between">
+      <div>Total Score</div>
+      <div>{{getCharacterScore()}} pts</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-12 pt-3">
+  <div class="card primary bg-dark">
+    <div class="card-header d-flex justify-content-between">
+      <div>Bonus Questions</div>
+      <div>{{getBonusQuestionScore()}} pts</div>
+    </div>
+    <div class="card-body p-0">
+      <app-bonus-questions-table [bonusQuestions]="bonusQuestions"></app-bonus-questions-table>
+    </div>
+  </div>
+</div>
+
+<div class="col-12 pt-3">
+    <div class="card primary bg-dark">
+      <div class="card-header d-flex justify-content-between">
+        <div>Pick Em' Score</div>
+        <div>{{getPickEmScore()}} pts</div>
+      </div>
+    </div>
+  </div>
+
+<app-character-entry-table [characterEntries]="characterEntries"></app-character-entry-table>

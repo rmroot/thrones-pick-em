@@ -1,0 +1,122 @@
+<div class="card bg-dark w-100" [ngClass]="{'primary-character': characterEntry.character.characterLevel == 1,
+    'secondary-character': characterEntry.character.characterLevel == 2 }">
+  <div class="card-header d-flex justify-content-between">
+    <div>{{characterEntry.character.name}}</div>
+    <div>{{getCharacterScore()}} pts</div>
+  </div>
+  <div class="card-body">
+    <table class="table table-sm table-dark table-striped mb-0 table-hover">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Prediction</th>
+          <th>Current</th>
+          <th>Pts Gained</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Lives/Dies</td>
+          <td>
+            <span *ngIf="characterEntry.dies == true">Dies</span>
+            <span *ngIf="characterEntry.dies == false">Lives</span>
+          </td>
+          <td>
+            <span *ngIf="masterEntry.dies == true">Dies</span>
+            <span *ngIf="masterEntry.dies == false">Lives</span>
+          </td>
+          <td>
+            {{getDiesPts()}} pts
+          </td>
+        </tr>
+
+        <tr>
+          <td>Turns Wight Walker</td>
+          <td>
+            <span *ngIf="characterEntry.becomesWight == true">Yes</span>
+            <span *ngIf="characterEntry.becomesWight == false">No</span>
+            <span *ngIf="characterEntry.becomesWight == undefined">&mdash;</span>
+          </td>
+          <td>
+            <span *ngIf="masterEntry.becomesWight == true">Yes</span>
+            <span *ngIf="masterEntry.becomesWight == false && masterEntry.dies == true">No</span>
+            <span *ngIf=" masterEntry.dies == false">&mdash;</span>
+          </td>
+          <td>
+            <span *ngIf="characterEntry.becomesWight == undefined">&mdash;</span>
+            <span *ngIf="characterEntry.becomesWight != undefined">{{getTurnsWightScore()}} pts</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Episode Death</td>
+          <td>
+            <span *ngIf="characterEntry.dies == true">
+              {{characterEntry.episodeDeath}}
+            </span>
+            <span *ngIf="characterEntry.dies == false">
+              &mdash;
+            </span>
+          </td>
+          <td>
+            <span *ngIf="masterEntry.dies == true">
+              {{masterEntry.episodeDeath}}
+            </span>
+            <span *ngIf="masterEntry.dies == false">
+              &mdash;
+            </span>
+          </td>
+          <td>
+            <span
+              *ngIf="characterEntry.dies == true && masterEntry.episodeDeath == characterEntry.episodeDeath">15pts</span>
+            <span
+              *ngIf="characterEntry.dies == true || masterEntry.episodeDeath != characterEntry.episodeDeath">0pts</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Killed By</td>
+          <td>
+            <span *ngIf="characterEntry.dies == true && characterEntry.killedBy != undefined">
+              {{getKilledBy(characterEntry.killedBy)}}
+            </span>
+            <span *ngIf="characterEntry.dies == true || characterEntry.killedBy == undefined">
+              &mdash;
+            </span>
+          </td>
+          <td>
+            <span *ngIf="masterEntry.dies == true && masterEntry.killedBy != undefined">
+              {{getKilledBy(masterEntry.killedBy)}}
+            </span>
+            <span *ngIf="masterEntry.dies == true || masterEntry.killedBy == undefined">
+              &mdash;
+            </span>
+          </td>
+          <td>
+            <span
+              *ngIf="masterEntry.dies == true && characterEntry.dies == true && characterEntry.killedBy != undefined && masterEntry.killedBy == characterEntry.killedBy">
+              15pts
+            </span>
+            <span
+              *ngIf="masterEntry.dies == false || characterEntry.dies == false || characterEntry.killedBy == undefined || masterEntry.killedBy != characterEntry.killedBy">
+              0pts
+            </span>
+        </tr>
+        <tr>
+          <td>Sure Thing</td>
+          <td>
+            <span *ngIf="characterEntry.sureThing">Yes</span>
+            <span *ngIf="!characterEntry.sureThing ">No</span>
+          </td>
+          <td>
+            &mdash;
+          </td>
+          <td>
+            <span *ngIf="characterEntry.sureThing == true">x1.5</span>
+            <span *ngIf="!characterEntry.sureThing">&mdash;</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

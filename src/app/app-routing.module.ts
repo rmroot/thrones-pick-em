@@ -8,6 +8,8 @@ import { RulesComponent } from './core/rules/rules.component';
 import { BonusQuestionsComponent } from './core/bonus-questions/bonus-questions.component';
 import { LogoutComponent } from './core/logout/logout.component';
 import { ScoringComponent } from './core/scoring/scoring.component';
+import { MyScoreComponent } from './core/my-score/my-score.component';
+import { GroupsComponent } from './core/groups/groups.component';
 
 const routes: Routes = [
   {
@@ -33,6 +35,14 @@ const routes: Routes = [
             path: 'standings',
             component: StandingsComponent
           },
+          {
+            path: 'my-score',
+            component: MyScoreComponent
+          },
+          {
+            path: 'groups',
+            component: GroupsComponent
+          }
         ]
       },
       {
