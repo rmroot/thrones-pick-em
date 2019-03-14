@@ -1,5 +1,11 @@
-<div class="jumbotron jumbotron-fluid">
-  <div class="container-fluid">
-    <h1 class="display-4">Standings coming soon!</h1>
+<div class="col-12 pt-3">
+  <div class="d-flex flex-column">
+    <div class="card bg-dark" *ngFor="let standings of standings; let index = index;">
+      <div class="card-header d-flex justify-content-between">
+        <div>
+          {{index+1}}. {{standings.entry.displayName}} ({{standings.score}} pts)
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -20,10 +20,11 @@ export class PickCardComponent implements OnInit {
   emitSave = new EventEmitter<boolean>();
 
   characterList: Array<Character>;
-  constructor() { }
+  constructor() { 
+    this.characterList = CharacterList;
+  }
 
   ngOnInit() {
-    this.characterList = CharacterList;
   }
 
   save(){

@@ -22,3 +22,11 @@ export interface BonusQuestions {
     dannyBaby: boolean,
     promisedPrince: number
 }
+
+
+export interface UserEntryFirebase {
+    userId: string,
+    characterEntries: string,
+    bonusQuestions: string,
+    displayName: string
+}

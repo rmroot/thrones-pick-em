@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { UserEntry, CharacterEntry, BonusQuestions } from '../models/entryData';
+import { UserEntry, CharacterEntry, BonusQuestions, UserEntryFirebase } from '../models/entryData';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { CharacterList } from '../models/characters';
@@ -9,10 +9,10 @@ import { User } from 'firebase';
 @Injectable()
 export class EntryDataService {
 
-  entryCollection: AngularFirestoreCollection<UserEntry>;
-  userDoc: AngularFirestoreDocument<any>;
-  doc: Observable<any>;
-  entries: Observable<any>;
+  userEntryCollection: AngularFirestoreCollection<UserEntryFirebase>;
+  userEntryDoc: AngularFirestoreDocument<UserEntryFirebase>;
+  userEntryDocObservable: Observable<UserEntryFirebase>;
+  allEntriesDocObservable: Observable<UserEntryFirebase[]>;
   characterEntries: BehaviorSubject<Array<CharacterEntry>>;
   bonusQuestions: BehaviorSubject<BonusQuestions>;
   user: User;
@@ -30,10 +30,10 @@ export class EntryDataService {
     afAuth.user.subscribe(user => {
       this.user = user;
       if (this.user) {
-        this.entryCollection = this.afs.collection<any>('users');
-        this.userDoc = this.entryCollection.doc(this.user.uid);
-        this.entries = this.entryCollection.valueChanges();
-        this.doc = this.userDoc.valueChanges();
+        this.userEntryCollection = this.afs.collection<any>('users');
+        this.userEntryDoc = this.userEntryCollection.doc(this.user.uid);
+        this.allEntriesDocObservable = this.userEntryCollection.valueChanges();
+        this.userEntryDocObservable = this.userEntryDoc.valueChanges();
         this.subscribeData();
       }
     })
@@ -52,7 +52,7 @@ export class EntryDataService {
         }
       )
     });
-    let pickString: string = JSON.stringify(characterEntries);
+    let characterEntryString: string = JSON.stringify(characterEntries);
     let bonusQuestions: BonusQuestions = {
       sitsIronThrone: 1,
       cerseiPregnant: false,
@@ -60,9 +60,9 @@ export class EntryDataService {
       promisedPrince: 1
     };
     let bonusQuestionString: string = JSON.stringify(bonusQuestions);
-    this.entryCollection.doc(this.user.uid).set(
+    this.userEntryCollection.doc(this.user.uid).set(
       {
-        picks: pickString,
+        characterEntries: characterEntryString,
         displayName: this.user.displayName,
         bonusQuestions: bonusQuestionString,
         userId: this.user.uid
@@ -70,25 +70,25 @@ export class EntryDataService {
     )
   }
 
-  updatePicks(picks: string) {
-    this.userDoc.update({
-      picks: picks,
+  updateCharacterEntries(characterEntriesString: string) {
+    this.userEntryDoc.update({
+      characterEntries: characterEntriesString,
       userId: this.user.uid
     });
   }
 
   updateBonusQuestions(bonusQuestions: string) {
-    this.userDoc.update({
+    this.userEntryDoc.update({
       bonusQuestions: bonusQuestions,
       userId: this.user.uid
     });
   }
 
   subscribeData() {
-    this.doc.subscribe(val => {
+    this.userEntryDocObservable.subscribe(val => {
       if (val) {
-        if (val.picks) {
-          this.characterEntries.next(JSON.parse(val.picks));
+        if (val.characterEntries) {
+          this.characterEntries.next(JSON.parse(val.characterEntries));
         }
         if (val.bonusQuestions) {
           this.bonusQuestions.next(JSON.parse(val.bonusQuestions));
@@ -98,9 +98,21 @@ export class EntryDataService {
       }
     })
 
-    this.entries.subscribe(entries => {
-      console.log(entries);
-      this.allEntries.next(entries);
+    this.allEntriesDocObservable.subscribe(entries => {
+      let userEntries: Array<UserEntry> = new Array<UserEntry>();
+      if (entries) {
+        entries.forEach(entry => {
+          userEntries.push(
+            {
+              userId: entry.userId,
+              characterEntries: JSON.parse(entry.characterEntries),
+              bonusQuestions: JSON.parse(entry.bonusQuestions),
+              displayName: entry.displayName
+            }
+          )
+        })
+      }
+      this.allEntries.next(userEntries);
     })
   }
 }

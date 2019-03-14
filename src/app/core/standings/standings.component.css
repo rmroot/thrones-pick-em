@@ -1,0 +1,13 @@
+.card-header, .card-body{
+    padding: 6px;
+}
+
+.card-header:nth-child(2n){
+    background-color: rgba(255, 0, 0, 0.5);
+    border-color: rgba(255, 0, 0, 0.5);
+}
+
+.card-header{
+    background-color: #21618C;
+    border-color: #21618C;
+}

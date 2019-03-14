@@ -38,7 +38,7 @@ export class MakePicksComponent implements OnInit {
 
   save() {
     let stringifyEntry: string = JSON.stringify(this.characterEntries);
-    this.entryDataService.updatePicks(stringifyEntry);
+    this.entryDataService.updateCharacterEntries(stringifyEntry);
   }
 
   checkSureThings() {
