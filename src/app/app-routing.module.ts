@@ -55,10 +55,6 @@ const routes: Routes = [
             redirectTo: 'make-picks'
           },
           {
-            path: 'rules',
-            component: RulesComponent
-          },
-          {
             path: 'make-picks',
             component: MakePicksComponent
           },
@@ -71,7 +67,11 @@ const routes: Routes = [
       {
         path: 'logout',
         component: LogoutComponent
-      }
+      },
+      {
+        path: 'rules',
+        component: RulesComponent
+      },
     ]
   }
 ];

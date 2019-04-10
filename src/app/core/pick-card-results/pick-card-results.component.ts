@@ -24,9 +24,17 @@ export class PickCardResultsComponent implements OnInit {
       return 0;
     } else {
       if (this.masterEntry.character.characterLevel == 1) {
-        return 10;
+        if (this.characterEntry.dies == true) {
+          return 15;
+        } else {
+          return 10;
+        }
       } else {
-        return 5;
+        if (this.characterEntry.dies == true) {
+          return 10;
+        } else {
+          return 5;
+        }
       }
     }
   }

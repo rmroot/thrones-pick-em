@@ -8,13 +8,19 @@
   <div class="card-body d-flex flex-column">
 
     <!--lives/dies-->
-    <div class="p-0 text-center">
-      <span *ngIf="characterEntry.character.characterLevel == 1">(10pts)</span>
-      <span *ngIf="characterEntry.character.characterLevel == 2">(5pts)</span>
+    <div class="p-0 text-center d-flex">
+      <div class="w-50 text-center">
+        <span *ngIf="characterEntry.character.characterLevel == 1">(15pts)</span>
+        <span *ngIf="characterEntry.character.characterLevel == 2">(10pts)</span>
+      </div>
+      <div class="w-50 text-center">
+        <span *ngIf="characterEntry.character.characterLevel == 1">(10pts)</span>
+        <span *ngIf="characterEntry.character.characterLevel == 2">(5pts)</span>
+      </div>
     </div>
     <div class="btn-group btn-group-sm">
       <button type="button" class="btn btn-danger btn-sm toggle-btn" (click)="setLives(characterEntry)"
-        [ngClass]="{'active': !characterEntry.dies}">Lives</button>
+        [ngClass]="{'active': !characterEntry.dies}" >Lives</button>
       <button type="button" class="btn btn-danger btn-sm toggle-btn" (click)="setDies(characterEntry)"
         [ngClass]="{'active': characterEntry.dies}">Dies</button>
     </div>

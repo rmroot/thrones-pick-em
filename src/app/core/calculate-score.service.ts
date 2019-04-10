@@ -21,9 +21,17 @@ export class CalculateScoreService {
     let score: number = 0;
     if (masterCharacterEntry.dies == characterEntry.dies) {
       if (characterEntry.character.characterLevel == 1) {
-        score += 10;
+        if (characterEntry.dies == true) {
+          score += 15;
+        } else {
+          score += 10;
+        }
       } else {
-        score += 5;
+        if (characterEntry.dies == true) {
+          score += 10;
+        } else {
+          score += 5;
+        }
       }
       if (characterEntry.dies == true) {
         if (characterEntry.becomesWight != undefined && characterEntry.becomesWight == masterCharacterEntry.becomesWight) {
@@ -49,16 +57,16 @@ export class CalculateScoreService {
 
   calculateBonusQuestions(bonusQuestions: BonusQuestions): number {
     let score: number = 0;
-    if(masterEntry.bonusQuestions.cerseiPregnant == bonusQuestions.cerseiPregnant){
+    if (masterEntry.bonusQuestions.cerseiPregnant == bonusQuestions.cerseiPregnant) {
       score += 4;
     }
-    if(masterEntry.bonusQuestions.dannyBaby == bonusQuestions.dannyBaby){
+    if (masterEntry.bonusQuestions.dannyBaby == bonusQuestions.dannyBaby) {
       score += 8;
     }
-    if(masterEntry.bonusQuestions.promisedPrince == bonusQuestions.promisedPrince){
+    if (masterEntry.bonusQuestions.promisedPrince == bonusQuestions.promisedPrince) {
       score += 10;
     }
-    if(masterEntry.bonusQuestions.sitsIronThrone == bonusQuestions.sitsIronThrone){
+    if (masterEntry.bonusQuestions.sitsIronThrone == bonusQuestions.sitsIronThrone) {
       score += 15;
     }
     return score;
